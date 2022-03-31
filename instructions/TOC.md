@@ -4,7 +4,7 @@
 1. start arduino IDE
 1. plug in Arduino Nano Every
 1. install library if needed
-1. choose board and board
+1. choose board and port
 1. Open the blink example program: File/Examples/01.Basics/Blink
 1. upload to board
 1. is LED blinking?
