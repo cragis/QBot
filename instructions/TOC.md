@@ -1,6 +1,6 @@
 # QBot assembly
 
-##Test Arduino
+## Test Arduino
 1. start arduino IDE
 1. plug in Arduino Nano Every
 1. install library if needed
