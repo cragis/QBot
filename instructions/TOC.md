@@ -8,7 +8,7 @@
 1. Open the blink example program: File/Examples/01.Basics/Blink
 1. upload to board
 1. is LED blinking?
-1.Change the program so the LED blinks faster and stays off more briefly than it stays on.
+1. Change the program so the LED blinks faster and stays off more briefly than it stays on.
 
 https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink
 ## Try to run from battery
