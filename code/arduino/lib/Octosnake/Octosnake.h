@@ -12,12 +12,12 @@
 class Oscillator{
 
     public:
-        Oscillator();
-        float refresh();
-        void reset();
-        void start();
-        void start(unsigned long ref_time);
-        void stop();
+        Oscillator();  // sets parameters to default
+        float refresh();  // recalculates output 
+        void reset();  //set ref_time to now
+        void start();  //runs reset and sets stop to false
+        void start(unsigned long ref_time); // sets stop to false and ref_time to input parameter
+        void stop(); //sets stop to true
         float time_to_radians(double time);
         float degrees_to_radians(float degrees);
         float degrees_to_time(float degrees);

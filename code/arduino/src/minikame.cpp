@@ -3,14 +3,14 @@
 
 void MiniKame::init(){
     // Map between servos and board pins
-    board_pins[0] = D1; // Servo S0
-    board_pins[1] = D4; // Servo S1
-    board_pins[2] = D8; // Servo S2
-    board_pins[3] = D6; // Servo S3
-    board_pins[4] = D7; // Servo S4
-    board_pins[5] = D5; // Servo S5
-    board_pins[6] = D2; // Servo S6
-    board_pins[7] = D3; // Servo S7
+    board_pins[0] = D1; // Servo S0  LFH
+    board_pins[1] = D4; // Servo S1  RFH
+    board_pins[2] = D8; // Servo S2  LFK
+    board_pins[3] = D6; // Servo S3  RFK
+    board_pins[4] = D7; // Servo S4  LRH
+    board_pins[5] = D5; // Servo S5  RRH
+    board_pins[6] = D2; // Servo S6  LRK
+    board_pins[7] = D3; // Servo S7  RRK
 
     // Trim values for zero position calibration.
     trim[0] = 0;
@@ -152,6 +152,8 @@ void MiniKame::moonwalkL(float steps, int T=5000){
     execute(steps, period, amplitude, offset, phase);
 }
 
+
+// move hips LF&RR FB, RF&LR BF, moving knees with half period so that they go down when leg moves BW
 void MiniKame::walk(float steps, int T=5000){
     int x_amp = 15;
     int z_amp = 20;
@@ -188,7 +190,7 @@ void MiniKame::walk(float steps, int T=5000){
         setServo(1, oscillator[1].refresh());
         setServo(4, oscillator[4].refresh());
         setServo(5, oscillator[5].refresh());
-
+// don't refresh (keep fixed) knees when hip is moving forward
         if (side == 0){
             setServo(3, oscillator[3].refresh());
             setServo(6, oscillator[6].refresh());
@@ -278,10 +280,12 @@ void MiniKame::home(){
     for (int i=0; i<8; i++) setServo(i, position[i]);
 }
 
+// move to 90 degrees with all servos
 void MiniKame::zero(){
     for (int i=0; i<8; i++) setServo(i, 90);
 }
 
+// reverse direction of servo with id = id
 void MiniKame::reverseServo(int id){
     if (reverse[id])
         reverse[id] = 0;
@@ -302,7 +306,7 @@ float MiniKame::getServo(int id){
     return _servo_position[id];
 }
 
-
+//
 void MiniKame::moveServos(int time, float target[8]) {
     if (time>10){
         for (int i = 0; i < 8; i++)	_increment[i] = (target[i] - _servo_position[i]) / (time / 10.0);
@@ -320,6 +324,7 @@ void MiniKame::moveServos(int time, float target[8]) {
     for (int i = 0; i < 8; i++) _servo_position[i] = target[i];
 }
 
+// start a sequence of number of steps = steps with period, amplitude, offset, and phase
 void MiniKame::execute(float steps, int period[8], int amplitude[8], int offset[8], int phase[8]){
 
     for (int i=0; i<8; i++){

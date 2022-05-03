@@ -4,9 +4,12 @@
 #include <Servo.h>
 #include <Octosnake.h>
 
+// declaring class: functions and parameters (called methods and attributes)
 class MiniKame{
 public:
     void init();
+    
+    // defined motions
     void run(float steps, int period);
     void walk(float steps, int period);
     void omniWalk(float steps, int T, bool side, float turn_factor);
@@ -29,7 +32,7 @@ public:
     void moveServos(int time, float target[8]);
 
 private:
-    Oscillator oscillator[8];
+    Oscillator oscillator[8];  //defined in Octosnake
     Servo servo[8];
     int board_pins[8];
     int trim[8];
