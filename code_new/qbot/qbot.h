@@ -19,7 +19,7 @@ class MiniKame {
     MiniKame();
     void init();
     void run(int dir = 1, float steps = 1, float T = 550);
-    void walk(int dir = 1, float steps = 1, float T = 550);
+    void walk(float steps = 1, float T = 550);
     void omniWalk(float steps, float T, bool side, float turn_factor);
     void turnL(float steps, float period);
     void turnR(float steps, float period);
@@ -30,6 +30,7 @@ class MiniKame {
     void hello();
     void jump();
     void home();
+    void zero();
     void frontBack(float steps, float period);
 
     void setServo(int id, float target);

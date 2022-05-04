@@ -25,13 +25,17 @@ boolean random_walk = true;
 
 void setup() {
   Serial.begin(115200);
-
+  pinMode(LED_BUILTIN, OUTPUT);
 
   randomSeed(analogRead(A7));
 
   //
   robot.init();
-  delay(2000);
+  robot.home();
+  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(2000);                       // wait for a second
+  digitalWrite(LED_BUILTIN, LOW); 
+  
 
   //begin: triggering delay for servo calibrating
   pinMode(CAL_TRIGGER_PIN, OUTPUT);
@@ -77,13 +81,13 @@ void gaits2(int pattern) {
 
   switch (cmd) {
     case GO:
-      robot.pushUp(2, 5000);
+      robot.walk(10, 1000);
       break;
     case FORWARD:
-      robot.pushUp(2, 5000);
+      robot.turnR(3,2000);
       break;
     case LEFT:
-      robot.dance(1, 550);
+      robot.turnL(3, 2000);
       break;
   }
 }
